@@ -67,19 +67,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-# React
+###React
 Discovering react
 
 
 
-#Prerequired
+###Prerequired
 NodeJS
 NPM v6.7.0
   sudo apt install npm
 IDE Front: VSCode, Sublime Text, ...
 
 
-#Général
+###Général
 
 REACT = React.js = Reactjs
 Developped by Facebook
@@ -87,7 +87,7 @@ JavaScript libraries
 Single page application
 Using components
 
-#Component
+###Component
 
 Declaration :
 
@@ -105,7 +105,7 @@ Usage :
 
 `<MyComponent text="Hello"/>`
 
-#Props
+###Props
 
 Props are arugments provided by the calling component.
 They are similar to HTML tags but are personalizable
@@ -118,7 +118,7 @@ They are similar to HTML tags but are personalizable
 
 Here we can add as many parameters we want, even arrays
 
-#State
+###State
 
 Initialization: 
 
@@ -151,7 +151,7 @@ Modification:
 	}
 }`
 
-#Variables
+###Variables
 
 
 let: Scope : Block 	Reassignable : No
@@ -159,7 +159,7 @@ const:	Scope : Block 	Reassignable : No
 var: 	Scope : Function 	Reassignable : Yes
 
 
-#Truthy/Falsy
+###Truthy/Falsy
 
 All elements can be casted into a boolen
 
@@ -168,7 +168,7 @@ false : false, 0, "", null, undefinded, NaN
 (undefined is a var that points nothin, not even null)
 true : The rest
 
-#Condition Structure
+###Condition Structure
 
 `<div>
     { false && <MyComponent/>}
@@ -196,7 +196,7 @@ data = [{id : 1}, {id :2}]`
 </div>`
 
 
-#Loops
+###Loops
 
 For loops:
 
@@ -212,7 +212,7 @@ array.map(item => {
     return <div key={item.id}>{item.name}</div>
 })`
 
-#Functions
+###Functions
 
 `const myFunction = function(...args)(: ReturnType) { ... }`
 
@@ -227,7 +227,7 @@ JavaScript allows us to use functions that returns function
 `const myFunction = function(...args)(: ReturnType) { function(...args) { ... } }`
 
 
-#Binding
+###Binding
 
 `myObj.method()
 
@@ -239,12 +239,23 @@ Those two method calls are different
 In the first case method() is called on myObj
 In the second case, it is called on this
 
-#Installation
+###Installation
 
     NPM : sudo apt install npm
     NPX : sudo npm i -g npm
     npx create-react-app <nom du projet>
     cd <nom du projet> ; npm start
+
+###Step 1
+
+    Installation de reactstrap:
+        npm install bootstrap --save   #to install bootstrap
+        npm install --save reactstrap react react-dom
+    Ajouter dans le fichier index.js :
+        import 'bootstrap/dist/css/bootstrap.min.css';
+    Récupérer le mock des données sur le dépôt Git
+
+
 
 
 
