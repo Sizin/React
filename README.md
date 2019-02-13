@@ -239,6 +239,14 @@ Those two method calls are different
 In the first case method() is called on myObj
 In the second case, it is called on this
 
+#Installation
+
+    NPM : sudo apt install npm
+    NPX : sudo npm i -g npm
+    npx create-react-app <nom du projet>
+    cd <nom du projet> ; npm start
+
+
 
 
 
