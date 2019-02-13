@@ -67,12 +67,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-###React
+## React
 Discovering react
 
 
 
-###Prerequired
+### Prerequired
 NodeJS
 NPM v6.7.0
   sudo apt install npm
@@ -87,11 +87,12 @@ JavaScript libraries
 Single page application
 Using components
 
-###Component
+### Component
 
 Declaration :
 
-`import React, { Component } from 'react';
+```
+import React, { Component } from 'react';
 
 class MyComponent extends Component {
 	render(){
@@ -99,26 +100,31 @@ class MyComponent extends Component {
 			<span>{this.props.text}</span>
 		)
 	}
-}`
+}
+```
 
 Usage : 
 
-`<MyComponent text="Hello"/>`
+```
+<MyComponent text="Hello"/>
+```
 
-###Props
+### Props
 
 Props are arugments provided by the calling component.
 They are similar to HTML tags but are personalizable
 
-`<MyComponent 
+```
+<MyComponent 
     text="Hello" 
     data={["Sinan", "nanis", "World"]} 
     component={MyComponent2}
-/>`
+/>
+```
 
 Here we can add as many parameters we want, even arrays
 
-###State
+### State
 
 Initialization: 
 
@@ -126,13 +132,16 @@ State is the current state of the component.
 It can only be modified by the component itself.
 A state change result in calling render() method seen eralier
 
-`class MyComponent extends Component {
+```
+class MyComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { name: "Sinan" };
-}`
+}
+```
 
-`class MyComponent extends Component {
+```
+class MyComponent extends Component {
 		state = {
 			name:"Raca"		
 		}
@@ -141,22 +150,24 @@ A state change result in calling render() method seen eralier
 			return(<span> Hello {this.state.name} </span> )		
 		}
 	}
-}`
+}
+```
 
 Modification:
 
-`class MyComponent extends Component {
+```
+class MyComponent extends Component {
 	componentChange(){
 		this.setState({data: [{id: 0}, {id: 1}]})
 	}
-}`
+}
+```
 
-###Variables
-
-
-let: Scope : Block 	Reassignable : No
-const:	Scope : Block 	Reassignable : No
-var: 	Scope : Function 	Reassignable : Yes
+### Variables
+ 
+*let*: Scope : Block 	Reassignable : No
+*const*:	Scope : Block 	Reassignable : No
+*var*: 	Scope : Function 	Reassignable : Yes
 
 
 ###Truthy/Falsy
@@ -168,23 +179,28 @@ false : false, 0, "", null, undefinded, NaN
 (undefined is a var that points nothin, not even null)
 true : The rest
 
-###Condition Structure
+### Condition Structure
 
-`<div>
+```
+<div>
     { false && <MyComponent/>}
 </div>
 
 <div>
     <MyComponent/>
-</div>`
+</div>
+```
 
-`let data = this.props.data || []
+```
+let data = this.props.data || []
 
 <MyComponent data={[{id : 1}, {id :2}]}/>
 
-data = [{id : 1}, {id :2}]`
+data = [{id : 1}, {id :2}]
+```
 
-`<div>
+```
+<div>
     {false 
         ? <MyComponent/>
         : this.props.data[0].id
@@ -193,60 +209,69 @@ data = [{id : 1}, {id :2}]`
 
 <div>
    1
-</div>`
+</div>
+```
 
 
-###Loops
+### Loops
 
 For loops:
 
-`for(const interator of object) { ... }`
+```
+for(const interator of object) { ... }
 
-`for(let index = 0; index < limit; index++){ ... }`
+for(let index = 0; index < limit; index++){ ... }
+```
 
 Array loops:
 
-`array.map(item => { ... }) : List<Any>
+```
+array.map(item => { ... }) : List<Any>
 
 array.map(item => {
     return <div key={item.id}>{item.name}</div>
-})`
+})
+```
 
-###Functions
+### Functions
 
-`const myFunction = function(...args)(: ReturnType) { ... }`
+```
+const myFunction = function(...args)(: ReturnType) { ... }
 
-`myFunction(...args){ ... }`
+myFunction(...args){ ... }
 
-`myFunction = (...args) => { ... }`
-
+myFunction = (...args) => { ... }
+```
 JavaScript allows us to use functions that returns function
 
-`myFunction = (...args) => (...args) => { ... }`
+```myFunction = (...args) => (...args) => { ... }
 
-`const myFunction = function(...args)(: ReturnType) { function(...args) { ... } }`
+const myFunction = function(...args)(: ReturnType) { function(...args) { ... } }
+```
 
 
-###Binding
+### Binding
 
-`myObj.method()
+```
+myObj.method()
 
 const myMethod = myObj.method
-myMethod()`
+myMethod()
+```
 
 
 Those two method calls are different
 In the first case method() is called on myObj
 In the second case, it is called on this
 
-###Installation
+### Installation
 
     NPM : sudo apt install npm
     NPX : sudo npm i -g npm
     npx create-react-app <nom du projet>
     cd <nom du projet> ; npm start
 
-###Step 1
+### Step 1
 
     Installation de reactstrap:
         npm install bootstrap --save   #to install bootstrap
