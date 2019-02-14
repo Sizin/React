@@ -17,7 +17,6 @@ class RecipeDetail extends Component{
 
     }
 
-
     submitNewRecipe = () => {
         this.state.addMode && this.props.add(this.state.recipe);
         this.setState({addMode: !this.state.addMode})
@@ -36,6 +35,11 @@ class RecipeDetail extends Component{
         this.setState({recipe: {...this.state.recipe, description: event.target.value}})
     }
 
+    // JAMAIS DE REQUETE DANS UN COMPOSANT
+    // getIngredients(){
+    //     return fetch('http://10.0.1.9:8080/api/v1/ingredients....
+    // }
+    
     
     render(){
         //Destructration ! LEs noms des arguments doivent matcher ceur de recipe

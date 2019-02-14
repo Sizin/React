@@ -1,70 +1,113 @@
 import React, { Component } from 'react';
 import RecipeDetail from '../components/RecipeDetail.js';
 import {Row, Container, Button} from 'reactstrap';
-//Pour importer MOCK il faut utiliser des accolades car c'est un import nommé et non par défaut
-import {MOCK} from '../Mock.js';
+import Axios from 'axios';
 
-
+const DB_URL = 'http://10.0.1.9:8080/api/v1';
 
 class RecipeList extends Component {
     state={
-        data: MOCK,
-        addMode: false
+        addMode: false,
+        recipes: [],
+        ingreditents: []
     }
 
     // Delete fonction, double method
     // Il faut deux niveau de méthode car par défault React appelera la fonction si elle ne possède pas un second niveau
     delete = (id) => () => {
-        this.setState({data: this.state.data.filter(recipe => recipe.id !== id)})
+        Axios.delete(`${DB_URL}/recipes/${id}`);
+        this.setState({recipes: this.state.recipes.filter(recipe => recipe.id !== id)})
     }
 
     edit = (recipe) => {
-        var temp = this.state.data.filter(item => recipe.id !== item.id)
+        Axios.patch(`${DB_URL}/recipes/`, recipe);
+        var temp = this.state.recipes.filter(item => recipe.id !== item.id)
         temp.push(recipe)
-        this.setState({data: temp})
+        this.setState({recipes: temp})
     }
 
     add = (newRecipe) => {
-
-        console.log(newRecipe);
-        var temp = this.state.data;
-        temp.push(newRecipe);
-        this.setState({data: temp})
+        fetch(`${DB_URL}/recipes/`, {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                ...newRecipe,
+                "id": 5451,
+                "ingredients": [
+                {
+                    "recipeId": 1,
+                    "ingredientId": 1,
+                    "name": "Dark rum (Appleton Estate Reserve)",
+                    "quantity": 2,
+                    "unit": "oz"
+                    }
+                ]
+              })
+           }).then(result =>{
+                var temp = this.state.recipes;
+                temp.push(newRecipe);
+                this.setState({recipes: temp})
+           });
     }
 
+
+    
 
     toggleAddRecipe = () => {
         // this.state.addMode && this.props.add(this.state.recipe);
         this.setState({addMode: !this.state.addMode})
     }
 
-    render() {
-        let {data} = this.state;
+    getRecipes(){
+        return fetch(`${DB_URL}/recipes`).then( result => {
+            result.json().then(recipes => {
+                console.log("Retrieving recipes",recipes);
+                this.setState({recipes: recipes});
+            });
+        }).catch(error => {
+            console.log("Error retrieving recipe", error);
+        });
+    }
 
+    //ComonentDidMount always called before render()
+    componentDidMount(){
+        this.getRecipes();
+    }
+
+
+    render() {
+        let {recipes} = this.state;
         // Le return est forcement qu'UN seul composant avec des sous composants
         return (
-        <div className="RecipeList">
-            <Container>
-            <Row>
+        <div >
+            <div className="navigationBar">
 
-                {/* map() est une boucle */}
+            </div>
 
-                {data.map((recipe) => 
-                <RecipeDetail recipe={recipe} key={recipe.id} edit={this.edit} delete={this.delete(recipe.id)}/>
-                    )}
+       
+            <div className="RecipeList">
+                <Container>
+                <Row>
 
-                {/* Alors içi on donne 'delete' en props, qui sera utilisé dans l'enfant RecipeDetail */}
+                    {/* map() est une boucle */}
 
-                {  
-                    // If addmode is true then we display recipeDetail card but with empty value
-                    this.state.addMode && <RecipeDetail edit={this.edit} delete={this.delete} add={this.add}></RecipeDetail> 
-                }
+                    {recipes.map((recipe) => 
+                    <RecipeDetail recipe={recipe} key={recipe.id} edit={this.edit} delete={this.delete(recipe.id)}/>
+                        )}
 
-            </Row>
+                    {/* Alors içi on donne 'delete' en props, qui sera utilisé dans l'enfant RecipeDetail */}
 
-                <Button onClick={this.toggleAddRecipe}> Add </Button> 
+                    {  
+                        // If addmode is true then we display recipeDetail card but with empty value
+                        this.state.addMode && <RecipeDetail edit={this.edit} delete={this.delete} add={this.add}></RecipeDetail> 
+                    }
 
-            </Container>
+                </Row>
+
+                    <Button onClick={this.toggleAddRecipe}> Add </Button> 
+
+                </Container>
+            </div>
         </div>
         );
   }
