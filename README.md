@@ -79,7 +79,7 @@ NPM v6.7.0
 IDE Front: VSCode, Sublime Text, ...
 
 
-###Général
+### Général
 
 REACT = React.js = Reactjs
 Developped by Facebook
@@ -170,7 +170,7 @@ class MyComponent extends Component {
 *var*: 	Scope : Function 	Reassignable : Yes
 
 
-###Truthy/Falsy
+### Truthy/Falsy
 
 All elements can be casted into a boolen
 
@@ -281,9 +281,11 @@ In the second case, it is called on this
     Récupérer le mock des données sur le dépôt Git
 
 
+### Life cycle 
 
+http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
+### React-md
 
-
-
+https://github.com/mlaursen/react-md/tree/64077b92d42c65bfcf140a37d9eb403bb581dc73/examples/with-create-react-app
 
