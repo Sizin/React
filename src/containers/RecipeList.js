@@ -8,8 +8,7 @@ const DB_URL = 'http://10.0.1.9:8080/api/v1';
 class RecipeList extends Component {
     state={
         addMode: false,
-        recipes: [],
-        ingreditents: []
+        recipes: []
     }
 
     // Delete fonction, double method
@@ -79,12 +78,6 @@ class RecipeList extends Component {
         let {recipes} = this.state;
         // Le return est forcement qu'UN seul composant avec des sous composants
         return (
-        <div >
-            <div className="navigationBar">
-
-            </div>
-
-       
             <div className="RecipeList">
                 <Container>
                 <Row>
@@ -108,7 +101,6 @@ class RecipeList extends Component {
 
                 </Container>
             </div>
-        </div>
         );
   }
 }
